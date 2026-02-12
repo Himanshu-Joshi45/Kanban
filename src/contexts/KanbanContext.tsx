@@ -65,14 +65,12 @@ export function KanbanProvider({ children }: { children: ReactNode }) {
 
     if (!taskToMove) return;
 
-    const previousStatus = taskToMove.status;
-
-    setTasks(prev => {
-      const updated = prev.map(t =>
+    // optimistic update
+    setTasks(prev =>
+      prev.map(t =>
         t.id === taskId ? { ...t, status: newStatus } : t
-      );
-      return updated;
-    });
+      )
+    );
 
     const response = await mockApi.moveTask(taskId, newStatus);
 
@@ -85,7 +83,10 @@ export function KanbanProvider({ children }: { children: ReactNode }) {
     } else {
       setTasks(previousTasks);
       saveTasks(previousTasks);
-      showToast(response.error || 'Failed to move task. Reverting changes.', 'error');
+      showToast(
+        response.error || 'Failed to move task. Reverting changes.',
+        'error'
+      );
     }
   };
 
@@ -105,7 +106,10 @@ export function KanbanProvider({ children }: { children: ReactNode }) {
     } else {
       setTasks(previousTasks);
       saveTasks(previousTasks);
-      showToast(response.error || 'Failed to delete task. Reverting changes.', 'error');
+      showToast(
+        response.error || 'Failed to delete task. Reverting changes.',
+        'error'
+      );
     }
   };
 
@@ -127,7 +131,7 @@ export function KanbanProvider({ children }: { children: ReactNode }) {
 
 export function useKanban() {
   const context = useContext(KanbanContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useKanban must be used within a KanbanProvider');
   }
   return context;

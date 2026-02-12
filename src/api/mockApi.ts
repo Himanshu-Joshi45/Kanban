@@ -4,7 +4,6 @@ const MOCK_DELAY = 1500;
 const FAILURE_RATE = 0.2;
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-
 const shouldFail = () => Math.random() < FAILURE_RATE;
 
 export const mockApi = {
@@ -25,7 +24,10 @@ export const mockApi = {
     return { success: true, data: newTask };
   },
 
-  moveTask: async (taskId: string, newStatus: TaskStatus): Promise<ApiResponse<null>> => {
+  moveTask: async (
+    _taskId: string,
+    _newStatus: TaskStatus
+  ): Promise<ApiResponse<null>> => {
     await delay(MOCK_DELAY);
 
     if (shouldFail()) {
@@ -35,7 +37,7 @@ export const mockApi = {
     return { success: true };
   },
 
-  deleteTask: async (taskId: string): Promise<ApiResponse<null>> => {
+  deleteTask: async (_taskId: string): Promise<ApiResponse<null>> => {
     await delay(MOCK_DELAY);
 
     if (shouldFail()) {
