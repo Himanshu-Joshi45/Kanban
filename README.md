@@ -1,75 +1,102 @@
-# React + TypeScript + Vite
+# 🧩 Kanban Board
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simplified **Kanban Board Application** built with focus on ⚡ Optimistic UI updates, 🧠 robust state management, and 🎨 clean user experience.
+> 🛠️ Built using React + Tailwind CSS  
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📌 Objective
 
-## React Compiler
+The goal of this project is not just to build a working Kanban board, but to demonstrate:
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- ⚡ Optimistic UI updates  
+- 🔁 Proper rollback handling  
+- ⏳ Asynchronous state consistency  
+- 🧠 Clean application architecture  
+- 🎨 Minimal & responsive UI  
 
-Note: This will impact Vite dev & build performances.
+---
 
-## Expanding the ESLint configuration
+# 🌐 Live Demo
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+🔗 **Live Hosted Link:** https://kanban-i4vg.vercel.app/
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+# 🛠️ Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- ⚛️ React.js  
+- 🎨 Tailwind CSS  
+- 🧠 State Management: Context API
+- 📦 JavaScript / TypeScript  
+- 🌍 Deployment: Vercel 
+
+---
+
+# ✨ Features
+
+## 🔐 1. Landing Page & Mock Authentication
+
+- Clean landing page with Login button  
+- Accepts any non-empty username/email  
+- Redirects to Kanban board on success  
+- 💾 Login state persists on refresh (localStorage)
+
+---
+
+## 📋 2. Kanban Board
+
+### Three Columns:
+
+- 📝 To Do  
+- 🚧 In Progress  
+- ✅ Done  
+
+### Functionalities
+
+- ➕ Add Task (to "To Do")  
+- 🔄 Move Task (Drag & Drop)  
+- ❌ Delete Task  
+
+---
+
+# 🔁 Failure Handling & Rollback Logic
+
+If API fails (after delay):
+
+1. 🔔 Show Toast Notification  
+   Example:  
+   `"Failed to move item. Please try again."`
+
+2. 🔄 Automatic Rollback  
+   - Previous state is restored  
+   - Card moves back to original column  
+   - UI remains consistent  
+
+---
+
+# 🧪 How to Run Locally
+
+```bash
+# 1️⃣ Clone the repository
+git clone https://github.com/Himanshu-Joshi45/Kanban.git
+
+# 2️⃣ Navigate into project
+cd frontend
+
+# 3️⃣ Install dependencies
+npm install
+
+# 4️⃣ Start development server
+npm run dev
+
+---
+
 ```
+## 👨‍💻 Developer
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Himanshu Joshi
+- [GitHub](https://github.com/Himanshu-Joshi45)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+
